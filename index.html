@@ -456,42 +456,10 @@
 
 
 
-        #start-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(11, 15, 25, 0.98);
-            backdrop-filter: blur(10px);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: opacity 0.5s ease;
-        }
-        .start-content {
-            text-align: center;
-            color: var(--gold-mid);
-            font-size: 1.5rem;
-            font-weight: 700;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
     </style>
 </head>
 <body>
 
-    <!-- Start Overlay for Audio -->
-    <div id="start-overlay" onclick="startExperience()">
-        <div class="start-content">
-            <i class="fas fa-hand-pointer" style="font-size: 3rem; margin-bottom: 20px;"></i><br>
-            Bofya Hapa Kuanza
-        </div>
-    </div>
 
     <div class="premium-ad-container">
         <!-- Backgrounds -->
@@ -667,27 +635,44 @@
         const icon = audioBtn.querySelector('i');
         let isPlaying = false;
 
+        function playAudio() {
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    icon.className = 'fas fa-volume-up';
+                    isPlaying = true;
+                }).catch(e => {
+                    console.log("Autoplay blocked, waiting for interaction...");
+                });
+            }
+        }
+
         function toggleAudio() {
             if (isPlaying) {
                 audio.pause();
                 icon.className = 'fas fa-volume-mute';
+                isPlaying = false;
             } else {
-                audio.play().catch(e => console.log("Audio play blocked."));
-                icon.className = 'fas fa-volume-up';
+                audio.play().then(() => {
+                    icon.className = 'fas fa-volume-up';
+                    isPlaying = true;
+                }).catch(e => console.log("Audio play blocked."));
             }
-            isPlaying = !isPlaying;
         }
 
-        function startExperience() {
-            const overlay = document.getElementById('start-overlay');
-            if (!isPlaying) {
-                audio.play().catch(e => console.log(e));
-                icon.className = 'fas fa-volume-up';
-                isPlaying = true;
-            }
-            overlay.style.opacity = '0';
-            setTimeout(() => overlay.style.display = 'none', 500);
-        }
+        // Try autoplay as soon as page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            playAudio();
+            
+            // Interaction triggers to bypass mobile audio autoplay policy
+            const startOnInteraction = () => {
+                playAudio();
+                document.removeEventListener('click', startOnInteraction);
+                document.removeEventListener('touchstart', startOnInteraction);
+            };
+            
+            document.addEventListener('click', startOnInteraction);
+            document.addEventListener('touchstart', startOnInteraction);
+        });
     </script>
 </body>
 </html>
