@@ -116,30 +116,31 @@
             z-index: 10;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             height: 100%;
-            padding: 30px 10px 10px 10px;
+            padding: 10px;
             color: var(--text-main);
             overflow: hidden;
+            gap: 10px;
         }
 
         /* Header Area */
         .header {
             text-align: center;
             flex-shrink: 0;
-            margin-bottom: 5px;
+            margin-bottom: 0;
             animation: slideDown 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
             opacity: 0;
             transform: translateY(-20px);
         }
 
         .diocese {
-            font-size: 0.65rem;
+            font-size: 0.9rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--gold-light);
-            font-weight: 600;
-            margin-bottom: 2px;
+            font-weight: 700;
+            margin-bottom: 5px;
         }
 
         .main-title {
@@ -171,11 +172,11 @@
         }
 
         .instruction {
-            font-size: 0.9rem;
-            font-weight: 600;
+            font-size: 0.95rem;
+            font-weight: 700;
             color: var(--text-muted);
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            margin-top: 25px;
+            margin-top: 10px;
         }
 
         @keyframes shine {
@@ -193,7 +194,7 @@
             grid-template-columns: 1fr;
             grid-template-rows: 1fr;
             align-items: center;
-            margin: 20px 0;
+            margin: 10px 0;
             perspective: 1000px;
         }
 
