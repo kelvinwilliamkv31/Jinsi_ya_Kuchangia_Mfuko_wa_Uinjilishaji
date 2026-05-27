@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mfuko wa Uinjilishaji - Jimbo Kuu Katoliki Arusha</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --gold-light: #FBE18D;
+            --gold-mid: #D4AF37;
+            --gold-dark: #AA7C11;
+            --glass-bg: rgba(25, 30, 56, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --text-main: #ffffff;
+            --text-muted: #e0e0e0;
+            
+            /* Network Colors */
+            --mpesa: #e60000;
+            --airtel: #ff0000;
+            --tigo: #00509d;
+            --halopesa: #f47920;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #050505;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Container & Dynamic Background */
+        .premium-ad-container {
+            width: 100%;
+            max-width: 414px;
+            height: 100%;
+            max-height: 896px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background: #0b0f19;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        }
+
+        .animated-bg {
+            position: absolute;
+            top: -50%; left: -50%; right: -50%; bottom: -50%;
+            background: radial-gradient(circle at 50% 50%, #1a237e 0%, #000000 70%), 
+                        radial-gradient(circle at 80% 20%, #4a148c 0%, transparent 50%),
+                        radial-gradient(circle at 20% 80%, #b71c1c 0%, transparent 50%);
+            background-blend-mode: screen;
+            animation: bgShift 20s infinite alternate linear;
+            z-index: 0;
+            opacity: 0.8;
+        }
+
+        .glass-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            z-index: 1;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        @keyframes bgShift {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(15deg) scale(1.2); }
+        }
+
+        /* Audio Button */
+        .audio-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid var(--glass-border);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .audio-btn:active { transform: scale(0.9); }
+
+        /* Content Wrapper - Flexbox for tight fitting */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 15px 15px 0 15px;
+            color: var(--text-main);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* Header Area */
+        .header {
+            text-align: center;
+            flex-shrink: 0;
+            margin-bottom: 5px;
+            animation: slideDown 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .diocese {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            line-height: 1.1;
+            text-transform: uppercase;
+            background: linear-gradient(to right, var(--gold-mid), var(--gold-light), #fff, var(--gold-light), var(--gold-dark));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            margin-bottom: 5px;
+            animation: shine 4s linear infinite;
+        }
+
+        .quote-pill {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            font-style: italic;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .instruction {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            margin-top: 10px;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        @keyframes slideDown {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards Area */
+        .cards-area {
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px 0;
+            min-height: 360px;
+            perspective: 1000px;
+        }
+
+        .glass-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            max-height: 380px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+            opacity: 0;
+            transform: rotateX(20deg) translateY(30px) scale(0.9);
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card.active {
+            opacity: 1;
+            transform: rotateX(0deg) translateY(0) scale(1);
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        /* Card Glow Effect */
+        .card-glow {
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 100%;
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.15;
+            filter: blur(20px);
+            transition: background 0.5s;
+        }
+        .vodacom .card-glow { background: var(--mpesa); }
+        .airtel .card-glow { background: var(--airtel); }
+        .tigo .card-glow { background: var(--tigo); }
+        .halopesa .card-glow { background: var(--halopesa); }
+
+        .network-name {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .vodacom .network-name { color: #ff3333; text-shadow: 0 0 10px rgba(255,51,51,0.5); }
+        .airtel .network-name { color: #ff4d4d; text-shadow: 0 0 10px rgba(255,77,77,0.5); }
+        .tigo .network-name { color: #4da6ff; text-shadow: 0 0 10px rgba(77,166,255,0.5); }
+        .halopesa .network-name { color: #ff9933; text-shadow: 0 0 10px rgba(255,153,51,0.5); }
+
+        /* Steps */
+        .steps-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-grow: 1;
+            justify-content: center;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            font-size: 0.75rem;
+            line-height: 1.2;
+            padding: 6px 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        .glass-card.active .step {
+            animation: slideInRight 0.4s ease forwards;
+        }
+
+        /* Staggered step animations */
+        .glass-card.active .step:nth-child(1) { animation-delay: 0.1s; }
+        .glass-card.active .step:nth-child(2) { animation-delay: 0.2s; }
+        .glass-card.active .step:nth-child(3) { animation-delay: 0.3s; }
+        .glass-card.active .step:nth-child(4) { animation-delay: 0.4s; }
+        .glass-card.active .step:nth-child(5) { animation-delay: 0.5s; }
+        .glass-card.active .step:nth-child(6) { animation-delay: 0.6s; }
+        .glass-card.active .step:nth-child(7) { animation-delay: 0.7s; }
+
+        @keyframes slideInRight {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .step span {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            font-weight: 500;
+            font-size: 0.6rem;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .step.highlight {
+            background: transparent;
+            border: none;
+            padding-left: 8px; /* keep same padding as normal steps */
+        }
+
+        .step.highlight span {
+            background: transparent;
+            color: var(--gold-light);
+            border-color: var(--gold-light);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.6), inset 0 0 8px rgba(212, 175, 55, 0.3);
+            font-weight: 800;
+        }
+
+        .step.highlight b {
+            color: var(--gold-light);
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+            font-size: 0.8rem;
+        }
+
+        /* Action Button */
+        .action-btn {
+            margin-top: 8px;
+            padding: 8px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--gold-mid), var(--gold-dark));
+            color: #000;
+            font-weight: 800;
+            font-size: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            animation: pulseGlow 2s infinite;
+            flex-shrink: 0;
+            text-transform: uppercase;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); transform: scale(1); }
+            50% { box-shadow: 0 0 20px 0 rgba(212, 175, 55, 0); transform: scale(1.02); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); transform: scale(1); }
+        }
+
+        /* Premium Footer */
+        .premium-footer {
+            flex-shrink: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px 15px 0 0;
+            padding: 10px 15px;
+            text-align: center;
+            transform: translateY(100%);
+            animation: slideUp 0.8s 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            position: relative;
+            z-index: 20;
+            margin-bottom: 0;
+        }
+
+        @keyframes slideUp {
+            to { transform: translateY(0); }
+        }
+
+        .bank {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+        .bank span {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .contacts {
+            display: flex;
+            justify-content: space-evenly;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+        .contacts i { color: var(--gold-mid); margin-right: 4px; }
+
+        .social {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="premium-ad-container">
+        <!-- Backgrounds -->
+        <div class="animated-bg"></div>
+        <div class="glass-overlay"></div>
+        <div class="particles" id="particles"></div>
+
+        <!-- Audio -->
+        <audio id="bg-audio" loop>
+            <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
+        </audio>
+        <button class="audio-btn" id="audio-toggle" onclick="toggleAudio()">
+            <i class="fas fa-volume-mute"></i>
+        </button>
+
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            
+            <!-- Header -->
+            <div class="header">
+                <div class="diocese">Jimbo Kuu Katoliki Arusha</div>
+                <h1 class="main-title">MFUKO WA UINJILISHAJI</h1>
+                <div class="quote-pill">"Tuipeleke Injili Katika Jamii Ya Wafugaji"</div>
+                <div class="instruction">Namna ya kuchangia kupitia simu:</div>
+            </div>
+
+            <!-- Cards -->
+            <div class="cards-area">
+                
+                <!-- M-PESA -->
+                <div class="glass-card vodacom active">
+                    <div class="card-glow"></div>
+                    <div class="network-name">M-PESA</div>
+                    <div class="steps-grid">
+                        <div class="step"><span>1</span> Piga *150*00#</div>
+                        <div class="step"><span>2</span> Chagua 4 Lipa bill</div>
+                        <div class="step"><span>3</span> Chagua 4 Ingiza namba ya kampuni</div>
+                        <div class="step highlight"><span>4</span> Namba ya kampuni: <b>770700</b></div>
+                        <div class="step"><span>5</span> Kumbukumbu: <b>Namba ya Parokia</b></div>
+                        <div class="step"><span>6</span> Weka kiasi (1000 au zaidi)</div>
+                        <div class="step"><span>7</span> Ingiza namba ya siri kuthibitisha</div>
+                    </div>
+                    <div class="action-btn">Lipa Bili: 770700</div>
+                </div>
+
+                <!-- AIRTEL MONEY -->
+                <div class="glass-card airtel">
+                    <div class="card-glow"></div>
+                    <div class="network-name">AIRTEL MONEY</div>
+                    <div class="steps-grid">
+                        <div class="step"><span>1</span> Piga *150*60#</div>
+                        <div class="step"><span>2</span> Chagua 5 Lipa bill</div>
+                        <div class="step"><span>3</span> Chagua 4 Ingiza namba ya kampuni</div>
+                        <div class="step highlight"><span>4</span> Namba ya kampuni: <b>770700</b></div>
+                        <div class="step"><span>5</span> Weka kiasi (1000 au zaidi)</div>
+                        <div class="step"><span>6</span> Kumbukumbu: <b>Namba ya Parokia</b></div>
+                        <div class="step"><span>7</span> Ingiza namba ya siri kuthibitisha</div>
+                    </div>
+                    <div class="action-btn">Lipa Bili: 770700</div>
+                </div>
+
+                <!-- MIX BY YAS -->
+                <div class="glass-card tigo">
+                    <div class="card-glow"></div>
+                    <div class="network-name">MIX BY YAS</div>
+                    <div class="steps-grid">
+                        <div class="step"><span>1</span> Piga *150*01#</div>
+                        <div class="step"><span>2</span> Chagua 4 Lipa bill</div>
+                        <div class="step"><span>3</span> Chagua 3 Ingiza namba ya kampuni</div>
+                        <div class="step highlight"><span>4</span> Namba ya kampuni: <b>770700</b></div>
+                        <div class="step"><span>5</span> Kumbukumbu: <b>Namba ya Parokia</b></div>
+                        <div class="step"><span>6</span> Weka kiasi (1000 au zaidi)</div>
+                        <div class="step"><span>7</span> Ingiza namba ya siri kuthibitisha</div>
+                    </div>
+                    <div class="action-btn">Lipa Bili: 770700</div>
+                </div>
+
+                <!-- HALOPESA -->
+                <div class="glass-card halopesa">
+                    <div class="card-glow"></div>
+                    <div class="network-name">HALOPESA</div>
+                    <div class="steps-grid">
+                        <div class="step"><span>1</span> Piga *150*88#</div>
+                        <div class="step"><span>2</span> Chagua 4 Lipa bill</div>
+                        <div class="step"><span>3</span> Chagua 3 Ingiza namba ya kampuni</div>
+                        <div class="step highlight"><span>4</span> Namba ya kampuni: <b>770700</b></div>
+                        <div class="step"><span>5</span> Kumbukumbu: <b>Namba ya Parokia</b></div>
+                        <div class="step"><span>6</span> Weka kiasi (1000 au zaidi)</div>
+                        <div class="step"><span>7</span> Ingiza namba ya siri kuthibitisha</div>
+                    </div>
+                    <div class="action-btn">Lipa Bili: 770700</div>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <div class="premium-footer">
+                <div class="bank">
+                    <i class="fas fa-university"></i> MKOMBOZI BANK: 01211520778901<br>
+                    <span>CATHOLIC ARCHDIOCESE OF ARUSHA - UINJILISHAJI</span>
+                </div>
+                <div class="contacts">
+                    <span><i class="fas fa-phone-alt"></i> +255 767 372 995</span>
+                    <span><i class="fas fa-phone-alt"></i> +255 743 066 786</span>
+                </div>
+                <div class="social">
+                    <div><i class="fas fa-envelope"></i> uinjilishaji@arusha-archdiocese.or.tz</div>
+                    <div><i class="fas fa-globe"></i> www.arusha-archdiocese.or.tz</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // Premium subtle particles
+        const canvas = document.getElementById('particles');
+        for(let i = 0; i < 30; i++) {
+            let p = document.createElement('div');
+            p.style.position = 'absolute';
+            p.style.width = Math.random() * 3 + 'px';
+            p.style.height = p.style.width;
+            p.style.background = 'rgba(255,255,255,' + (Math.random() * 0.3 + 0.1) + ')';
+            p.style.borderRadius = '50%';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.top = Math.random() * 100 + '%';
+            p.style.boxShadow = '0 0 10px rgba(255,255,255,0.5)';
+            p.style.animation = `float ${Math.random() * 10 + 10}s linear infinite`;
+            canvas.appendChild(p);
+        }
+
+        // Add float animation keyframes dynamically
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes float {
+                0% { transform: translateY(0) translateX(0); opacity: 0; }
+                10% { opacity: 1; }
+                90% { opacity: 1; }
+                100% { transform: translateY(-100vh) translateX(${Math.random() * 50 - 25}px); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Card Rotation Logic
+        const cards = document.querySelectorAll('.glass-card');
+        let currentIndex = 0;
+
+        function rotateCards() {
+            cards[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % cards.length;
+            
+            // Small delay before adding active to re-trigger internal animations perfectly
+            setTimeout(() => {
+                cards[currentIndex].classList.add('active');
+            }, 100);
+        }
+
+        // Change card every 5 seconds
+        setInterval(rotateCards, 5000);
+
+        // Audio controls
+        const audio = document.getElementById('bg-audio');
+        const audioBtn = document.getElementById('audio-toggle');
+        const icon = audioBtn.querySelector('i');
+        let isPlaying = false;
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                icon.className = 'fas fa-volume-mute';
+            } else {
+                audio.play().catch(e => console.log("Audio play blocked."));
+                icon.className = 'fas fa-volume-up';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        document.body.addEventListener('click', function initAudio() {
+            if(!isPlaying) toggleAudio();
+            document.body.removeEventListener('click', initAudio);
+        }, { once: true });
+    </script>
+</body>
+</html>
