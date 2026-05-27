@@ -255,16 +255,25 @@
             font-weight: 800;
             letter-spacing: 1px;
         }
-        .network-logo-img {
-            max-height: 35px;
-            max-width: 80%;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(255,255,255,0.2));
-        }
         .text-logo {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 900;
             text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .text-logo.mpesa {
+            color: #39b54a;
+            text-shadow: 0 0 15px rgba(57, 181, 74, 0.4);
+        }
+        .text-logo.airtel {
+            color: #ed1c24;
+            text-transform: lowercase;
+            letter-spacing: 0;
+            text-shadow: 0 0 15px rgba(237, 28, 36, 0.4);
+        }
+        .text-logo.airtel i {
+            font-style: italic;
         }
         .text-logo.mixx {
             background: linear-gradient(90deg, #00C3FF, #FF007F);
@@ -273,6 +282,11 @@
             font-style: italic;
             text-transform: none;
             letter-spacing: 0;
+            filter: drop-shadow(0 0 10px rgba(255, 0, 127, 0.3));
+        }
+        .text-logo.halopesa {
+            color: #f47920;
+            text-shadow: 0 0 15px rgba(244, 121, 32, 0.4);
         }
 
         .vodacom .network-name { color: #ff3333; text-shadow: 0 0 10px rgba(255,51,51,0.5); }
@@ -474,7 +488,7 @@
                 <div class="glass-card vodacom active">
                     <div class="card-glow"></div>
                     <div class="network-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" class="network-logo-img" alt="M-PESA">
+                        <div class="text-logo mpesa"><span style="color: #ed1c24;">M</span>-PESA</div>
                     </div>
                     <div class="steps-grid">
                         <div class="step"><span>1</span> Piga *150*00#</div>
@@ -492,7 +506,7 @@
                 <div class="glass-card airtel">
                     <div class="card-glow"></div>
                     <div class="network-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Airtel_Logo.svg" class="network-logo-img" alt="AIRTEL MONEY">
+                        <div class="text-logo airtel"><i>airtel</i> money</div>
                     </div>
                     <div class="steps-grid">
                         <div class="step"><span>1</span> Piga *150*60#</div>
@@ -528,7 +542,7 @@
                 <div class="glass-card halopesa">
                     <div class="card-glow"></div>
                     <div class="network-logo-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Logo_new_Halotel.png" class="network-logo-img" alt="HALOPESA">
+                        <div class="text-logo halopesa">HALOPESA</div>
                     </div>
                     <div class="steps-grid">
                         <div class="step"><span>1</span> Piga *150*88#</div>
