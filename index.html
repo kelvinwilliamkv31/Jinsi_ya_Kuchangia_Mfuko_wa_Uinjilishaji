@@ -169,6 +169,7 @@
             border-radius: 20px;
             margin-bottom: 5px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .instruction {
@@ -482,7 +483,7 @@
             <div class="header">
                 <div class="diocese">Jimbo Kuu Katoliki Arusha</div>
                 <h1 class="main-title">MFUKO WA UINJILISHAJI</h1>
-                <div class="quote-pill">"Tuipeleke Injili Katika Jamii Ya Wafugaji"</div>
+                <div class="quote-pill" id="impact-rotator">"Tuipeleke Injili Katika Jamii Ya Wafugaji"</div>
                 <div class="instruction">Namna ya kuchangia kupitia simu:</div>
             </div>
 
@@ -504,7 +505,7 @@
                         <div class="step"><span>6</span> Weka kiasi (1000 au zaidi)</div>
                         <div class="step"><span>7</span> Ingiza namba ya siri kuthibitisha</div>
                     </div>
-                    <div class="action-btn">Lipa Bili: 770700</div>
+                    <div class="action-btn">Changia Sasa • Lipa Bili: 770700</div>
                 </div>
 
                 <!-- AIRTEL MONEY -->
@@ -522,7 +523,7 @@
                         <div class="step"><span>6</span> Kumbukumbu: <b>Namba ya Parokia</b></div>
                         <div class="step"><span>7</span> Ingiza namba ya siri kuthibitisha</div>
                     </div>
-                    <div class="action-btn">Lipa Bili: 770700</div>
+                    <div class="action-btn">Changia Sasa • Lipa Bili: 770700</div>
                 </div>
 
                 <!-- MIX BY YAS -->
@@ -540,7 +541,7 @@
                         <div class="step"><span>6</span> Weka kiasi (1000 au zaidi)</div>
                         <div class="step"><span>7</span> Ingiza namba ya siri kuthibitisha</div>
                     </div>
-                    <div class="action-btn">Lipa Bili: 770700</div>
+                    <div class="action-btn">Changia Sasa • Lipa Bili: 770700</div>
                 </div>
 
                 <!-- HALOPESA -->
@@ -558,7 +559,7 @@
                         <div class="step"><span>6</span> Weka kiasi (1000 au zaidi)</div>
                         <div class="step"><span>7</span> Ingiza namba ya siri kuthibitisha</div>
                     </div>
-                    <div class="action-btn">Lipa Bili: 770700</div>
+                    <div class="action-btn">Changia Sasa • Lipa Bili: 770700</div>
                 </div>
 
             </div>
@@ -628,6 +629,29 @@
 
         // Change card every 5 seconds
         setInterval(rotateCards, 5000);
+
+        // Impact Text Rotator
+        const impactTexts = [
+            `"Tuipeleke Injili Katika Jamii Ya Wafugaji"`,
+            `"Kusaidia Jamii za Wafugaji wa Kimaasai"`,
+            `"Kujenga Mission Stations Pembezoni"`,
+            `"Ujenzi wa Nyumba za Mapadri Misulini"`,
+            `"Kusaidia Mahitaji ya Parokia za Pembezoni"`
+        ];
+        let impactIndex = 0;
+        const impactPill = document.getElementById('impact-rotator');
+
+        function rotateImpactText() {
+            impactPill.style.opacity = '0';
+            impactPill.style.transform = 'translateY(5px)';
+            setTimeout(() => {
+                impactIndex = (impactIndex + 1) % impactTexts.length;
+                impactPill.innerText = impactTexts[impactIndex];
+                impactPill.style.opacity = '1';
+                impactPill.style.transform = 'translateY(0)';
+            }, 500);
+        }
+        setInterval(rotateImpactText, 4000);
 
         // Audio controls
         const audio = document.getElementById('bg-audio');
