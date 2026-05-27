@@ -240,14 +240,39 @@
         .tigo .card-glow { background: var(--tigo); }
         .halopesa .card-glow { background: var(--halopesa); }
 
-        .network-name {
+        .network-name, .network-logo-container {
             text-align: center;
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: 1px;
             margin-bottom: 10px;
             padding-bottom: 5px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 45px;
+        }
+        .network-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        .network-logo-img {
+            max-height: 35px;
+            max-width: 80%;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(255,255,255,0.2));
+        }
+        .text-logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-align: center;
+        }
+        .text-logo.mixx {
+            background: linear-gradient(90deg, #00C3FF, #FF007F);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: italic;
+            text-transform: none;
+            letter-spacing: 0;
         }
 
         .vodacom .network-name { color: #ff3333; text-shadow: 0 0 10px rgba(255,51,51,0.5); }
@@ -448,7 +473,9 @@
                 <!-- M-PESA -->
                 <div class="glass-card vodacom active">
                     <div class="card-glow"></div>
-                    <div class="network-name">M-PESA</div>
+                    <div class="network-logo-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/M-PESA_LOGO-01.svg/512px-M-PESA_LOGO-01.svg.png" class="network-logo-img" alt="M-PESA">
+                    </div>
                     <div class="steps-grid">
                         <div class="step"><span>1</span> Piga *150*00#</div>
                         <div class="step"><span>2</span> Chagua 4 Lipa bill</div>
@@ -464,7 +491,9 @@
                 <!-- AIRTEL MONEY -->
                 <div class="glass-card airtel">
                     <div class="card-glow"></div>
-                    <div class="network-name">AIRTEL MONEY</div>
+                    <div class="network-logo-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Airtel_Logo.svg/512px-Airtel_Logo.svg.png" class="network-logo-img" alt="AIRTEL MONEY">
+                    </div>
                     <div class="steps-grid">
                         <div class="step"><span>1</span> Piga *150*60#</div>
                         <div class="step"><span>2</span> Chagua 5 Lipa bill</div>
@@ -480,7 +509,9 @@
                 <!-- MIX BY YAS -->
                 <div class="glass-card tigo">
                     <div class="card-glow"></div>
-                    <div class="network-name">MIX BY YAS</div>
+                    <div class="network-logo-container">
+                        <div class="text-logo mixx">Mixx by Yas</div>
+                    </div>
                     <div class="steps-grid">
                         <div class="step"><span>1</span> Piga *150*01#</div>
                         <div class="step"><span>2</span> Chagua 4 Lipa bill</div>
@@ -496,7 +527,9 @@
                 <!-- HALOPESA -->
                 <div class="glass-card halopesa">
                     <div class="card-glow"></div>
-                    <div class="network-name">HALOPESA</div>
+                    <div class="network-logo-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Logo_new_Halotel.png/512px-Logo_new_Halotel.png" class="network-logo-img" alt="HALOPESA">
+                    </div>
                     <div class="steps-grid">
                         <div class="step"><span>1</span> Piga *150*88#</div>
                         <div class="step"><span>2</span> Chagua 4 Lipa bill</div>
