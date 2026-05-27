@@ -116,10 +116,9 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            padding: 15px 15px 0 15px;
+            padding: 10px 10px 0 10px;
             color: var(--text-main);
-            overflow-y: auto;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
         /* Header Area */
@@ -193,7 +192,7 @@
             align-items: center;
             justify-content: center;
             margin: 5px 0;
-            min-height: 360px;
+            min-height: 280px;
             perspective: 1000px;
         }
 
@@ -362,13 +361,14 @@
             -webkit-backdrop-filter: blur(10px);
             border-top: 1px solid rgba(255,255,255,0.1);
             border-radius: 15px 15px 0 0;
-            padding: 10px 15px;
+            padding: 8px 10px;
             text-align: center;
             transform: translateY(100%);
             animation: slideUp 0.8s 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
             position: relative;
             z-index: 20;
             margin-bottom: 0;
+            margin-top: auto;
         }
 
         @keyframes slideUp {
