@@ -477,7 +477,7 @@
         <div class="particles" id="particles"></div>
 
         <!-- Audio -->
-        <audio id="bg-audio" loop autoplay>
+        <audio id="bg-audio" loop autoplay preload="auto">
             <source src="nitume-mimi-bwana.mp3.mp3" type="audio/mpeg">
         </audio>
         <button class="audio-btn" id="audio-toggle">
@@ -666,6 +666,10 @@
         const audioBtn = document.getElementById('audio-toggle');
         const icon = audioBtn.querySelector('i');
         let isPlaying = false;
+
+        // Force browser to start buffering audio immediately
+        audio.preload = "auto";
+        audio.load();
 
         function playAudio() {
             if (!isPlaying) {
